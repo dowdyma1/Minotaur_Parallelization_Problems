@@ -26,14 +26,14 @@ public class Guest implements Runnable{
 
     @Override
     public void run() {
-        int numVisits = rng.nextInt(1,5);
+        int numVisits = rng.nextInt(5)+1;
         for(int i = 0; i < numVisits; i++){
             lock.lock();
             log.info(id + " is in the room.");
 
             // sleep for 1 - 20 ms
             try {
-                Thread.sleep(rng.nextInt(1,20));
+                Thread.sleep(rng.nextInt(20));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -9,7 +9,7 @@ public class Driver {
         AtomicBoolean visitedFlag = new AtomicBoolean(false);
 
         Random rng = new Random();
-        int numGuests = rng.nextInt(1,100);
+        int numGuests = rng.nextInt(100) + 3;
 
         ArrayList<Guest> guests = new ArrayList<>(numGuests);
 
@@ -31,7 +31,7 @@ public class Driver {
         while(!allVisited || !visitedFlag.get()){
 
             // Minotaur picks guest at random to go in labyrinth
-            int curGuestIndex = rng.nextInt(0, numGuests);
+            int curGuestIndex = rng.nextInt(numGuests);
             Guest curGuest = guests.get(curGuestIndex);
             unvisited.remove(curGuest);
 
