@@ -2,14 +2,14 @@ package problem2;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.Logger;
+import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
 import org.apache.logging.log4j.core.config.DefaultConfiguration;
 
 import java.util.Random;
 
 public class Guest implements Runnable{
-    private static Logger log = (Logger) LogManager.getLogger(Guest.class);
+    private static Logger log = LogManager.getLogger(Guest.class);
 
     private final CLHLock lock;
     private final int id;

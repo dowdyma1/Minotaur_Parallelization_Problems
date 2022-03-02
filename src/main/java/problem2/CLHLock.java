@@ -1,14 +1,14 @@
 package problem2;
 
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.Logger;
+import org.apache.logging.log4j.Logger;
 
 import java.util.concurrent.atomic.AtomicReference;
 
 public class CLHLock {
-    private static final Logger log = (Logger) LogManager.getLogger(CLHLock.class);
+    private static Logger log = LogManager.getLogger(CLHLock.class);
 
-    static class QNode {
+    class QNode {
         volatile boolean locked = false;
     }
 
