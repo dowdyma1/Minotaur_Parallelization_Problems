@@ -1,5 +1,6 @@
 package problem1;
 
+import java.time.LocalTime;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Guest implements Runnable {
@@ -9,12 +10,14 @@ public class Guest implements Runnable {
     private final int numGuests;
     private boolean hasEatenCupcake = false;
     private final AtomicBoolean visitedFlag;
+    private final int id;
 
-    public Guest(Labyrinth labyrinth, AtomicBoolean visitedFlag, boolean isCounter, int numGuests){
+    public Guest(int id, Labyrinth labyrinth, AtomicBoolean visitedFlag, boolean isCounter, int numGuests){
         this.isCounter = isCounter;
         this.labyrinth = labyrinth;
         this.numGuests = numGuests;
         this.visitedFlag = visitedFlag;
+        this.id = id;
     }
 
     public void enterLabyrinth(){
@@ -22,6 +25,7 @@ public class Guest implements Runnable {
             if(!labyrinth.isCupcakePresent()){
                 guestCounter++;
                 labyrinth.requestCupcake();
+                System.out.println(LocalTime.now() + ": Counter increments to " + guestCounter);
             }
             if(guestCounter >= numGuests-1){
                 System.out.println("Counter is announcing victory");
@@ -32,8 +36,13 @@ public class Guest implements Runnable {
             if(labyrinth.isCupcakePresent() && !hasEatenCupcake){
                 labyrinth.eatCupcake();
                 hasEatenCupcake = true;
+                System.out.println(LocalTime.now() + ": Guest " + id + " sees cupcake and is entering labyrinth for first time.");
             }
         }
+    }
+
+    public int getID(){
+        return id;
     }
 
     @Override

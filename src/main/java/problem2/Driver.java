@@ -8,6 +8,7 @@ public class Driver {
     public static void main(String[] args){
         Random rng = new Random();
         int numGuests = rng.nextInt(30)+5;
+        System.out.println("Number of guests: " + numGuests);
 
         ArrayList<problem2.Guest> guests = new ArrayList<>(numGuests);
 

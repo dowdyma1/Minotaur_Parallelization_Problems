@@ -1,12 +1,9 @@
 package problem2;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import java.time.LocalTime;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class CLHLock {
-    private static Logger log = LogManager.getLogger(CLHLock.class);
 
     class QNode {
         volatile boolean locked = false;
@@ -32,13 +29,13 @@ public class CLHLock {
         myPred.set(pred);
 
         while(pred.locked){}
-        log.info("Lock acquired");
+        System.out.println(LocalTime.now() + ": " + " Lock ACQUIRED.");
     }
 
     public void unlock(){
         QNode qnode = myNode.get();
 
-        log.info("Lock released");
+        System.out.println(LocalTime.now() + ": " + " Lock RELEASED.");
         qnode.locked = false;
 
         myNode.set(myPred.get());

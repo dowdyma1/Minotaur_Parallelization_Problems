@@ -1,5 +1,6 @@
 package problem1;
 
+import java.time.LocalTime;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -9,14 +10,14 @@ public class Driver {
         AtomicBoolean visitedFlag = new AtomicBoolean(false);
 
         Random rng = new Random();
-        int numGuests = rng.nextInt(100) + 3;
+        int numGuests = rng.nextInt(50) + 5;
 
         ArrayList<Guest> guests = new ArrayList<>(numGuests);
 
         // Generate guests. One of them is the counter
-        guests.add(new Guest(labyrinth, visitedFlag, true, numGuests));
-        for(int i = 0; i < numGuests-1; i++){
-            Guest curGuest = new Guest(labyrinth, visitedFlag, false, numGuests);
+        guests.add(new Guest(0, labyrinth, visitedFlag, true, numGuests));
+        for(int i = 1; i < numGuests; i++){
+            Guest curGuest = new Guest(i, labyrinth, visitedFlag, false, numGuests);
             guests.add(curGuest);
         }
         Collections.shuffle(guests);
@@ -41,6 +42,7 @@ public class Driver {
             }
 
             // Minotaur tells guest to go into labyrinth
+            System.out.println(LocalTime.now() + ": Minotaur tells guest " + curGuest.getID() + " to enter labyrinth.");
             curGuest.run();
 
             boolean curFlag = visitedFlag.get();
